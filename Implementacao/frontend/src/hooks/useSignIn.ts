@@ -29,3 +29,5 @@ const useSignIn = () => {
     signIn
   };
 };
+
+export default useSignIn;
