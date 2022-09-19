@@ -1,5 +1,6 @@
 export const HOME_URL = '/';
-export const PROFILE_URL_BASE = '/profile';
+export const PROFILE_URL_BASE = '/perfil';
+export const SIGNUP_URL = '/cadastro';
 
 export const CAR_URL_BASE = '/carro';
 export const CREATE_CAR_URL = CAR_URL_BASE + '/criar';
