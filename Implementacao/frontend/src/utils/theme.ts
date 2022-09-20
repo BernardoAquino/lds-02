@@ -15,14 +15,17 @@ const FONT_WEIGHTS = {
 const COLORS = {
   primary: {
     pure: '#ff0000',
+    light: '#ff0001'
   },
   neutral: {
     0: '#000',
+    75: '#ccc',
     100: '#fff'
   }
 }
 
 export const themeConfig = {
+  grid: getGridSize,
   typography: {
     fontSize: FONT_SIZES,
     fontWeight: FONT_WEIGHTS,

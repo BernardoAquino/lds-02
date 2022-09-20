@@ -20,6 +20,6 @@ export const Option = styled.div<IOption>`
   padding: ${getGridSize(2.5)};
 
   ${(props) => props.active && css`
-    border-bottom: ${getGridSize(1)} solid ${(props) => props.theme.color.primary.pure}; 
+    border-bottom: ${getGridSize(1)} solid ${(props) => props?.theme?.color?.brand?.pure}; 
   `};
 `

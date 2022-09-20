@@ -8,7 +8,7 @@ export const Header = styled.header`
 `;
 
 export const Title = styled.p`
-  color: ${(props) => props.theme.color.brand.pure};
+  color: ${(props) => props?.theme?.color?.brand?.pure};
   font-size: ${(props) => props.theme.typography.fontSize[48]};
   font-weight: ${(props) => props.theme.typography.fontWeight.bold};
 `

@@ -16,8 +16,8 @@ type Options = {
 }
 
 const optionComponentMap = {
-  link: ({ children, ...props }) => <a {...props}>{children}</a>,
-  text: ({ children, ...props }) => <p {...props}>{children}</p>,
+  link: ({ children, ...props }: any) => <a {...props}>{children}</a>,
+  text: ({ children, ...props }: any) => <p {...props}>{children}</p>,
 }
 
 const Header = () => {

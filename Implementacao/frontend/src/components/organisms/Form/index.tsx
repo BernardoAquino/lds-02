@@ -8,6 +8,9 @@ import KeyValuePair from '../../../types/KeyValuePair';
 import Button from '../../atoms/Button';
 import TextField from '../../atoms/FormField/TextField';
 
+/** Styles */
+import * as El from './Form.style';
+
 type FormProps = {
   fields: Field[];
   submitLabel?: string;
@@ -45,17 +48,19 @@ const Form = ({
     const Component = componentMap[type];
     const onChangeCb = onChangeMap?.[getChangeMapType(type)]?.(field);
 
+    console.log('type: ', type, fieldProps);
+
     return <Component {...fieldProps} onChange={onChangeCb} />
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <El.Form onSubmit={handleSubmit(onSubmit)}>
       {fields.map(renderField)}
 
       <Button color='primary' disabled={isSubmittingForm}>
         {submitLabel}
       </Button>
-    </form>
+    </El.Form>
   )
 }
 
