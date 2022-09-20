@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 /** Utils */
-import { getGridSize } from '../../utils/grid';
+import { getGridSize } from '../../../utils/grid';
 
 export const Header = styled.header`
   padding: ${getGridSize(3)};
