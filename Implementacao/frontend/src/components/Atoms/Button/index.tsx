@@ -3,7 +3,7 @@ import React, { MouseEventHandler } from 'react';
 import * as El from './Button.style';
 
 export type ButtonProps = {
-  children: React.ReactElement;
+  children: React.ReactElement | string;
   color: 'primary' | 'secondary';
   disabled?: boolean;
   onClick?: (MouseEventHandler<HTMLButtonElement> & Function) | undefined;
