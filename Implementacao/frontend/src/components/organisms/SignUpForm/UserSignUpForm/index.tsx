@@ -1,10 +1,10 @@
 import React from 'react';
 
 /** Types */
-import { Field } from '../../../hooks/useForm';
+import { Field } from '../../../../hooks/useForm';
 
 /** Components */
-import Form from '../../organisms/Form';
+import Form from '../../../molecules/Form';
 
 type UserSignUpFormProps = {
   onSubmit: Function;
