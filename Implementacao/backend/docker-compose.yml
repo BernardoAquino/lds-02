@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  app:
+    networks:
+      - services_network
+    env_file: ./.env
+    build: ./rentacar_api
+    restart: on-failure
+    depends_on:
+      - mysqldb
+    ports:
+      - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
+  mysqldb:
+    networks:
+      - services_network
+    image: mysql:5.7
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQLDB_DATABASE
+    ports:
+      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+    volumes:
+      - db:/var/lib/mysql
+
+networks:
+  services_network:
+    external: true
+
+volumes:
+  db:
