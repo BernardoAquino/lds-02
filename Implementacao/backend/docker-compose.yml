@@ -1,10 +1,15 @@
-version: "3.8"
+version: "3"
 
 services:
   app:
-    networks:
-      - services_network
     env_file: ./.env
+    environment:
+      - MYSQL_HOST=mysqldb
+      - MYSQL_PORT=$MYSQLDB_DOCKER_PORT
+      - MYSQL_USER=$MYSQLDB_USER
+      - MYSQL_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+    image: rentacar_api
+    container_name: rentacar_api
     build: ./rentacar_api
     restart: on-failure
     depends_on:
@@ -16,8 +21,6 @@ services:
     stdin_open: true
     tty: true
   mysqldb:
-    networks:
-      - services_network
     image: mysql:5.7
     restart: unless-stopped
     env_file: ./.env
