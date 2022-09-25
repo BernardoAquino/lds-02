@@ -7,6 +7,8 @@ export type ButtonProps = {
   color: 'primary' | 'secondary';
   disabled?: boolean;
   onClick?: (MouseEventHandler<HTMLButtonElement> & Function) | undefined;
+  rounded?: boolean;
+  size?: 'sm' | 'md' | 'lg';
   type?: 'button' | 'submit' | 'reset' | undefined;
 }
 
@@ -15,10 +17,19 @@ const Button = ({
   color,
   disabled = false,
   onClick,
+  rounded = false,
+  size = 'md',
   type = 'button',
 }: ButtonProps) => {
   return (
-    <El.Button color={color} type={type} disabled={disabled} onClick={onClick}>
+    <El.Button
+      color={color}
+      rounded={rounded}
+      size={size}
+      type={type}
+      disabled={disabled}
+      onClick={onClick}
+    >
       {children}
     </El.Button>
   )

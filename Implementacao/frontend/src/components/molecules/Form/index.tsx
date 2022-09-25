@@ -5,8 +5,8 @@ import useForm, { Field } from '../../../hooks/useForm';
 import KeyValuePair from '../../../types/KeyValuePair';
 
 /** Component */
-import Button from '../../atoms/Button';
-import TextField from '../../atoms/FormField/TextField';
+import Button from '../../Atoms/Button';
+import TextField from '../../Atoms/FormField/TextField';
 
 /** Styles */
 import * as El from './Form.style';
@@ -44,13 +44,13 @@ const Form = ({
 
   const renderField = (field: Field) => {
     const { type, ...fieldProps } = field;
+    const normalizedFieldName = fieldProps.name.toLowerCase().split(' ').join('_');
 
     const Component = componentMap[type];
     const onChangeCb = onChangeMap?.[getChangeMapType(type)]?.(field);
+    const key = `form-field-${normalizedFieldName}`
 
-    console.log('type: ', type, fieldProps);
-
-    return <Component {...fieldProps} onChange={onChangeCb} />
+    return <Component key={key} {...fieldProps} type={type} onChange={onChangeCb} />
   }
 
   return (

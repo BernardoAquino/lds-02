@@ -6,7 +6,7 @@ export const Container = styled.div`
 `
 
 export const Label = styled.label`
-  color: ${(props) => props?.theme?.color?.neutral?.[0]};
+  color: ${(props) => props?.theme?.color?.neutral?.[100]};
   font-size: ${(props) => props.theme.typography.fontSize[16]};
   margin-bottom: ${(props) => props.theme.grid(1)};
 `

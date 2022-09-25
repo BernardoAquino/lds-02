@@ -10,9 +10,13 @@ import routes from './routes';
 /** Theme */
 import { themeConfig } from './utils/theme';
 
+/** Style */
+import GlobalStyle from './utils/getGlobalStyle';
+
 function App() {
   return (
     <ThemeProvider theme={themeConfig}>
+      <GlobalStyle />
       <RouterProvider router={routes} />
     </ThemeProvider>
   );

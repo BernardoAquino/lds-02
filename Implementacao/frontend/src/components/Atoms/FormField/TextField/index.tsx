@@ -3,6 +3,7 @@ import React, { ChangeEventHandler, FocusEventHandler } from 'react';
 import * as El from './TextField.style';
 
 type TextFieldProps = {
+  type: 'text' | 'password' | 'email';
   name: string;
   label?: string;
   value?: string;
@@ -12,6 +13,7 @@ type TextFieldProps = {
 }
 
 const TextField = ({
+  type,
   name,
   label,
   value,
@@ -23,7 +25,7 @@ const TextField = ({
     <El.Container>
       <El.Label htmlFor={name}>{label}</El.Label>
       <El.TextField 
-        type={'text'} 
+        type={type} 
         name={name}
         value={value} 
         placeholder={placeholder} 
