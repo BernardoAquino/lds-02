@@ -34,8 +34,9 @@ public class AutomovelController {
 	private AutomovelRepository automovelRepo;
 
 	@GetMapping("/novo")
+	@ResponseBody
 	public String automovelForm() {
-		return "automovelForm";
+		return "View nao disponivel!!!";
 	}
 	
 	@GetMapping("/all")
@@ -61,7 +62,7 @@ public class AutomovelController {
 	@PostMapping("/novo")
 	@ResponseBody
 	@Transactional
-	public AutomovelDto criarAutomovel(AutomovelForm form) {
+	public AutomovelDto criarAutomovel(@RequestBody AutomovelForm form) {
 
 		Automovel automovel = this.automovelRepo.save(new Automovel(form));
 		
