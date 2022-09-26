@@ -5,12 +5,12 @@ type UserAddress = {
   state: string;
 }
 
-type UserData = {
+export type UserData = {
   name: string;
   email: string;
   rg: string;
   cpf: string;
-  address: UserAddress;
+  address: string;
 }
 
 type SignUpResponse = {
@@ -40,7 +40,7 @@ export const useSignUpUser = () => {
   };
 };
 
-type AgentData = {
+export type AgentData = {
   email: string;
   password: string;
 }

@@ -11,7 +11,7 @@ export type Field = {
   options?: SelectOption[]
 };
 
-type Form = {
+export type Form = {
   [key: string]: string | null;
 };
 
@@ -37,7 +37,6 @@ const useForm = (fields: Field[]) => {
   const handleSubmit = (callback: Function) => (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmittingForm(true);
-    console.log('IS SUBMITTING!!!!!!', form)
     callback?.(form);
     setIsSubmittingForm(false);
   }
