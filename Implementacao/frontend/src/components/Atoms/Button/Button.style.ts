@@ -2,11 +2,6 @@ import styled, { css } from 'styled-components';
 
 import { ButtonProps } from './';
 
-const buttonColorMap = {
-  'primary': 'primary',
-  'secondary': 'brand',
-}
-
 const DisabledStyling = css`
   background-color: ${(props) => props.theme.color.neutral[75]};
 `

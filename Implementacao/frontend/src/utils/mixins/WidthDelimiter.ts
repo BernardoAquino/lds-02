@@ -1,6 +1,8 @@
 import { css } from 'styled-components';
 
-export default (maxWidth: string) => css`
+const WidthDelimiter = (maxWidth: string) => css`
   max-width: ${maxWidth};
   width: 100%;
 `;
+
+export default WidthDelimiter;

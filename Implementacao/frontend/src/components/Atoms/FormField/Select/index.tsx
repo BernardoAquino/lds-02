@@ -34,7 +34,7 @@ const Select = ({
     } else if (!_selected) {
       handleChange();
     }
-  }, [selected])
+  }, [selected, setSelected])
 
   const handleChange = (e?: ChangeEvent<HTMLSelectElement>, _selectedIndex: number = 0) => {
     const selectedIndex: number = Number(e?.target?.value || _selectedIndex);

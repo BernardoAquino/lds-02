@@ -21,7 +21,7 @@ const optionComponentMap = {
 }
 
 const Header = () => {
-  const authStatus = 'anonymous';
+  const authStatus = 'auth';
 
   const options: Options = {
     anonymous: [
