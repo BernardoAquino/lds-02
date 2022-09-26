@@ -87,7 +87,6 @@ public class UsuarioController {
 			return ResponseEntity.ok(new UsuarioDto(usuario));
 		}
 		return ResponseEntity.badRequest().build();
-		
 	}
 	
 	
