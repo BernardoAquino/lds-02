@@ -1,7 +1,7 @@
 import React from 'react';
 
 /** Components */
-import UserSignUp from '../../components/organisms/SignUpContainer/UserSignUp';
+import UserSignUp from '../../components/Organisms/SignUpContainer/UserSignUp';
 
 /** Style */
 import * as El from './SignUp.style';

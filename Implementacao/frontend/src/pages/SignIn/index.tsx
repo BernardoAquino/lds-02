@@ -1,7 +1,7 @@
 import React from 'react';
 
 /** Components */
-import SignIn from '../../components/organisms/SignIn';
+import SignIn from '../../components/Organisms/SignIn';
 
 /** Style */
 import * as El from './SignIn.style';
