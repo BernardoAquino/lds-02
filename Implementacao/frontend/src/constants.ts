@@ -1,5 +1,6 @@
 export const HOME_URL = '/';
 export const PROFILE_URL_BASE = '/perfil';
+export const SIGNIN_URL = '/entrar';
 export const SIGNUP_URL = '/cadastro';
 export const AGENT_SIGNUP_URL = '/cadastro/agente';
 

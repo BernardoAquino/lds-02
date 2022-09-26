@@ -2,10 +2,11 @@ import React from 'react';
 
 import { createBrowserRouter } from 'react-router-dom';
 
-import { AGENT_SIGNUP_URL, HOME_URL, PROFILE_URL_BASE, SIGNUP_URL } from './constants';
+import { AGENT_SIGNUP_URL, HOME_URL, PROFILE_URL_BASE, SIGNIN_URL, SIGNUP_URL } from './constants';
 
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+import SignIn from './pages/SignIn';
 import AgentSignUp from './pages/SignUp/AgentSignUp';
 import UserSignUp from './pages/SignUp/UserSignUp';
 
@@ -17,6 +18,10 @@ const routes = [
   {
     path: PROFILE_URL_BASE,
     element: <Profile />
+  },
+  {
+    path: SIGNIN_URL,
+    element: <SignIn />
   },
   {
     path: SIGNUP_URL,

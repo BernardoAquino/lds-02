@@ -2,20 +2,22 @@ import React, { ChangeEventHandler, FocusEventHandler } from 'react';
 
 import * as El from './TextField.style';
 
-type TextFieldProps = {
-  type: 'text' | 'password' | 'email';
+export type TextFieldProps = {
+  type?: string;
   name: string;
   label?: string;
   value?: string;
+  required?: boolean;
   placeholder?: string
   onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
   onBlur?: FocusEventHandler<HTMLInputElement> | undefined;
 }
 
 const TextField = ({
-  type,
+  type = 'text',
   name,
   label,
+  required = false,
   value,
   placeholder,
   onChange,
@@ -27,9 +29,10 @@ const TextField = ({
       <El.TextField 
         type={type} 
         name={name}
-        value={value} 
+        required={required} 
+        value={value}
         placeholder={placeholder} 
-        onChange={onChange} 
+        onChange={(e) => onChange?.(e)} 
         onBlur={onBlur} 
       />
     </El.Container>

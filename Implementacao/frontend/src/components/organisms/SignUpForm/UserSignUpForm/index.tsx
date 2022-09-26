@@ -16,31 +16,37 @@ const UserSignUpForm = ({ onSubmit }: UserSignUpFormProps) => {
       type: 'text',
       label: 'Nome',
       name: 'name',
+      required: true
     },
     {
       type: 'email',
       label: 'Email',
       name: 'email',
+      required: true
     },
     {
       type: 'password',
       label: 'Senha',
       name: 'password',
+      required: true
     },
     {
       type: 'text',
       label: 'RG',
       name: 'rg',
+      required: true
     },
     {
       type: 'text',
       label: 'CPF',
       name: 'cpf',
+      required: true
     },
     {
       type: 'text',
       label: 'Endereco',
       name: 'address',
+      required: true
     },
   ]
 

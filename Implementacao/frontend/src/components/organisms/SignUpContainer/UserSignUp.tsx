@@ -1,7 +1,7 @@
 import React from 'react';
 
 /** Constants */
-import { AGENT_SIGNUP_URL } from '../../../constants';
+import { AGENT_SIGNUP_URL, SIGNIN_URL } from '../../../constants';
 
 /** Components */
 import SignUpForm from '../SignUpForm';
@@ -14,6 +14,7 @@ const UserSignUp = () => {
     <El.Wrapper>
       <El.Title>Crie sua conta de usuário</El.Title>
       <SignUpForm type={'user'} onSubmit={console.log} />
+      <El.AlreadyHasAccount>Já possui conta? <a href={SIGNIN_URL}>Clique aqui para entrar</a></El.AlreadyHasAccount>
       <El.DividerText>OU</El.DividerText>
       <El.CreateAgentAccountText href={AGENT_SIGNUP_URL}>Crie uma conta de empresa ou banco</El.CreateAgentAccountText>
     </El.Wrapper>
