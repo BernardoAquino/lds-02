@@ -4,7 +4,7 @@ import React from 'react';
 import { Field } from '../../../hooks/useForm';
 
 /** Components */
-import Form from '../../molecules/Form';
+import Form from '../../Molecules/Form';
 
 type SignInFormProps = {
   onSubmit: Function;

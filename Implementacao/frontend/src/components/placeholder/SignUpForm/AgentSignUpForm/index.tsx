@@ -4,14 +4,29 @@ import React from 'react';
 import { Field } from '../../../../hooks/useForm';
 
 /** Components */
-import Form from '../../../molecules/Form';
+import Form from '../../../Molecules/Form';
 
-type UserSignUpFormProps = {
+type AgentSignUpFormProps = {
   onSubmit: Function;
 };
 
-const UserSignUpForm = ({ onSubmit }: UserSignUpFormProps) => {
-  const userSignUpFormFields: Field[] = [
+const AgentSignUpForm = ({ onSubmit }: AgentSignUpFormProps) => {
+  const agentSignUpFormFields: Field[] = [
+    {
+      type: 'select',
+      label: 'Tipo de agente',
+      name: 'agent_type',
+      options: [
+        {
+          label: 'Banco',
+          value: 'banco',
+        },
+        {
+          label: 'Empresa',
+          value: 'empresa',
+        }
+      ]
+    },
     {
       type: 'text',
       label: 'Nome',
@@ -32,18 +47,6 @@ const UserSignUpForm = ({ onSubmit }: UserSignUpFormProps) => {
     },
     {
       type: 'text',
-      label: 'RG',
-      name: 'rg',
-      required: true
-    },
-    {
-      type: 'text',
-      label: 'CPF',
-      name: 'cpf',
-      required: true
-    },
-    {
-      type: 'text',
       label: 'Endereco',
       name: 'address',
       required: true
@@ -53,10 +56,10 @@ const UserSignUpForm = ({ onSubmit }: UserSignUpFormProps) => {
   return (
     <Form
       onSubmit={onSubmit}
-      fields={userSignUpFormFields}
+      fields={agentSignUpFormFields}
       submitLabel={'Finalizar cadastro'}
     />
   );
 };
 
-export default UserSignUpForm;
+export default AgentSignUpForm;
