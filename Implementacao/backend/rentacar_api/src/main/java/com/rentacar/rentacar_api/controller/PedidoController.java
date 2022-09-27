@@ -47,7 +47,7 @@ public class PedidoController {
 	@GetMapping("/pendentes")
 	@ResponseBody
 	public List<PedidoDto> getAll(){
-		List<Pedido> pedidos = pedidoRepository.findAll();
+		List<Pedido> pedidos = this.pedidoRepository.findAll();
 		List<PedidoDto> pedidosDto = pedidos.stream().map(i -> new PedidoDto(i)).toList();
 		
 		return pedidosDto;
@@ -57,9 +57,9 @@ public class PedidoController {
 	@GetMapping("/{id}")
 	@ResponseBody
 	public ResponseEntity getPedidoById(@PathVariable("id") Long id){
-		Optional<Pedido> pedido = pedidoRepository.findById(id);
+		Optional<Pedido> pedido = this.pedidoRepository.findById(id);
 		if(pedido.isPresent()) {
-			return new ResponseEntity(pedido.get(), HttpStatus.CREATED);
+			return new ResponseEntity<Pedido>(pedido.get(), HttpStatus.CREATED);
 		}
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
@@ -101,7 +101,8 @@ public class PedidoController {
 	@PutMapping("/atualizar/{id}")
 	@Transactional
 	public ResponseEntity atualizarPedidoById(@PathVariable("id") Long id, @RequestBody @Valid PedidoFormAtualizacao form) {
-		Pedido pedido = form.atualizar(id,pedidoRepository);
+		Pedido pedido = form.atualizar(id, this.pedidoRepository);
+
 		if(!pedido.equals(null)) {
 			return ResponseEntity.ok(new PedidoDto(pedido));
 		}
@@ -112,7 +113,7 @@ public class PedidoController {
 	@PostMapping("/avaliar/{id}")
 	@Transactional
 	public ResponseEntity parecerAgente(@PathVariable("id") Long id,boolean parecer) {
-		Optional<Pedido> p= this.pedidoRepository.findById(id);
+		Optional<Pedido> p = this.pedidoRepository.findById(id);
 		if(p.isPresent()) {
 			Pedido pedido = p.get();
 			pedido.setParecerDoAgente(parecer);

@@ -126,7 +126,7 @@ public class AutomovelController {
 	@PutMapping("/atualizar/{id}")
 	@Transactional
 	public ResponseEntity atualizarAutomovelById(@PathVariable("id") Long id, @RequestBody @Valid AutomovelFormAtualizacao form) {
-		Automovel automovel = form.atualizar(id,this.automovelRepository);
+		Automovel automovel = form.atualizar(id, this.automovelRepository);
 		if(!automovel.equals(null)) {
 			return ResponseEntity.ok(new AutomovelDto(automovel));
 		}
@@ -135,7 +135,7 @@ public class AutomovelController {
 	}
 
 	public ResponseEntity ResponseEntity (Long idAutomovel, @Valid AutomovelFormAlugar form) {
-		Automovel automovel = form.alugar(idAutomovel,this.automovelRepository);
+		Automovel automovel = form.alugar(idAutomovel, this.automovelRepository);
 		if(!automovel.equals(null)) {
 			return ResponseEntity.ok(new AutomovelDto(automovel));
 		}
