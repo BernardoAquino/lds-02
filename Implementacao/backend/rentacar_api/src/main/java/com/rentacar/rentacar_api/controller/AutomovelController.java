@@ -51,7 +51,14 @@ public class AutomovelController {
 		List<AutomovelDto> automoveisDto = automoveis.stream().map(i -> new AutomovelDto(i)).toList();
 		
 		return automoveisDto;
-		
+	}
+
+	@GetMapping("/disponiveis")
+	@ResponseBody
+	public ResponseEntity getAutomoveisDisponiveis() {
+		List<Automovel> automoveisDisponiveis = automovelRepo.findByIsAlugado(false);
+
+		return ResponseEntity.ok(automoveisDisponiveis);
 	}
 	
 	@GetMapping("/{id}")
