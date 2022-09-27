@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.rentacar.rentacar_api.model.Automovel;
+import com.rentacar.rentacar_api.model.Usuario;
 
 public interface AutomovelRepository extends JpaRepository<Automovel, Long>{
-  List<Automovel> findByIsAlugado(boolean isAlugado);
+  List<Automovel> findByIsAlugadoAndProprietarioNot(boolean isAlugado, Usuario proprietario);
 }
