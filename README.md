@@ -3,7 +3,9 @@ Repositório para o desenvolvimento do Laboratório 01 (Laboratório de Desenvol
 
 ## Como executar o projeto
 
-Abaixo seguem instruções para executar as 2 aplicações contidas neste repositório localmente
+Para executar o projeto com maior facilidade seguindo os passos abaixo, é necessário possuir o [docker](https://docs.docker.com/engine/install/) instalado, assim como o [docker-compose](https://docs.docker.com/compose/install/).
+
+Abaixo seguem instruções para executar as 2 aplicações contidas neste repositório localmente.
 
 
 ### Backend
