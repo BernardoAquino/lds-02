@@ -24,7 +24,9 @@ import com.rentacar.rentacar_api.dto.AutomovelDto;
 import com.rentacar.rentacar_api.form.automovel.AutomovelForm;
 import com.rentacar.rentacar_api.form.automovel.AutomovelFormAtualizacao;
 import com.rentacar.rentacar_api.model.Automovel;
+import com.rentacar.rentacar_api.model.Usuario;
 import com.rentacar.rentacar_api.repository.AutomovelRepository;
+import com.rentacar.rentacar_api.repository.UsuarioRepository;
 
 @Controller
 @RequestMapping("/automovel")
@@ -32,6 +34,9 @@ public class AutomovelController {
 
 	@Autowired
 	private AutomovelRepository automovelRepo;
+
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 
 	@GetMapping("/novo")
 	@ResponseBody
@@ -62,11 +67,16 @@ public class AutomovelController {
 	@PostMapping("/novo")
 	@ResponseBody
 	@Transactional
-	public AutomovelDto criarAutomovel(@RequestBody AutomovelForm form) {
+	public ResponseEntity criarAutomovel(@RequestBody AutomovelForm form) {
+		Optional<Usuario> proprietarioResult = this.usuarioRepository.findByHash(form.proprietario);
 
-		Automovel automovel = this.automovelRepo.save(new Automovel(form));
+		if (proprietarioResult.isPresent()) {
+			Automovel automovel = this.automovelRepo.save(new Automovel(form, proprietarioResult.get()));
+
+			return ResponseEntity.ok(new AutomovelDto(automovel));
+		}
 		
-		return new AutomovelDto(automovel);
+		return ResponseEntity.badRequest().build();
 	}
 
 	@DeleteMapping("/remover/{id}")
