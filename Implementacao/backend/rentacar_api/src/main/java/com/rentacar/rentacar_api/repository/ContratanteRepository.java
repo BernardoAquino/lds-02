@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ContratanteRepository extends JpaRepository<Contratante, Long> {
   Optional<Contratante> findByLoginAndSenha(String login, String senha);
+
+  Optional<Contratante> findByHash(String hash);
 }
