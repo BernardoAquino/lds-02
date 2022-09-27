@@ -57,7 +57,7 @@ public class ContratanteController {
 		Optional<Contratante> usuario = this.contratanteRepo.findByLoginAndSenha(form.getLogin(), form.getSenha());
 
 		if(usuario.isPresent()) {
-			String hash = DigestUtils.sha256Hex(usuario.get().getSenha());
+			String hash = DigestUtils.sha256Hex(usuario.get().getSenha() + usuario.get().getLogin());
 
 			usuario.get().setHash(hash);
 
