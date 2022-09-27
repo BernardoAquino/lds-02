@@ -55,9 +55,9 @@ public class AgenteController {
 	@GetMapping("/{id}")
 	@ResponseBody
 	public ResponseEntity getAgenteById(@PathVariable("id") Long id){
-		Optional<Agente> agente = agenteRepo.findById(id);
+		Optional<Agente> agente = this.agenteRepo.findById(id);
 		if(agente.isPresent()) {
-			return new ResponseEntity(agente.get(), HttpStatus.CREATED);
+			return new ResponseEntity(agente.get(), HttpStatus.OK);
 		}
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
