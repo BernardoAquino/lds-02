@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.rentacar.rentacar_api.form.automovel.AutomovelForm;
+import com.rentacar.rentacar_api.form.automovel.FormCriarAutomovel;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,17 +36,30 @@ public class Automovel {
 	@ManyToOne
 	private Usuario proprietario;
 
+	@ManyToOne
+	private Agente analista;
+
 	private LocalDate dataCriacao = LocalDate.now();
 	private LocalDate dataModificacao = LocalDate.now();
 
-	
-	public Automovel(AutomovelForm form, Usuario proprietario) {
+	public Automovel(FormCriarAutomovel form, Usuario proprietario) {
 		this.setAno(form.ano);
 		this.setModelo(form.modelo);
 		this.setPlaca(form.placa);
 		this.setMarca(form.marca);
 		this.setContratoCredito(form.contratoCredito);
 		this.setProprietario(proprietario);
+		this.setIsAlugado(false);
+	}
+
+	public Automovel(FormCriarAutomovel form, Usuario proprietario, Agente analista) {
+		this.setAno(form.ano);
+		this.setModelo(form.modelo);
+		this.setPlaca(form.placa);
+		this.setMarca(form.marca);
+		this.setContratoCredito(form.contratoCredito);
+		this.setProprietario(proprietario);
+		this.setAnalista(analista);
 		this.setIsAlugado(false);
 	}
 }
