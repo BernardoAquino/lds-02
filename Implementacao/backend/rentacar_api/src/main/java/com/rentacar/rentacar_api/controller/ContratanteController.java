@@ -5,6 +5,8 @@ import com.rentacar.rentacar_api.form.contratante.ContratanteForm;
 import com.rentacar.rentacar_api.form.contratante.ContratanteFormAtualizacao;
 import com.rentacar.rentacar_api.model.Contratante;
 import com.rentacar.rentacar_api.repository.ContratanteRepository;
+
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +57,13 @@ public class ContratanteController {
 		Optional<Contratante> usuario = this.contratanteRepo.findByLoginAndSenha(form.getLogin(), form.getSenha());
 
 		if(usuario.isPresent()) {
-			return new ResponseEntity(HttpStatus.OK);
+			String hash = DigestUtils.sha256Hex(usuario.get().getSenha());
+
+			usuario.get().setHash(hash);
+
+			this.contratanteRepo.save(usuario.get());
+
+			return new ResponseEntity(hash, HttpStatus.OK);
 		}
 		return new ResponseEntity(HttpStatus.UNAUTHORIZED);
 	}
