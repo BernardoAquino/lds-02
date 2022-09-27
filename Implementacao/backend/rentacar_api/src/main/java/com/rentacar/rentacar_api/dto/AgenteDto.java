@@ -5,7 +5,7 @@ import com.rentacar.rentacar_api.model.TipoAgente;
 
 import java.time.LocalDate;
 
-public class AgenteDto extends UsuarioDto{
+public class AgenteDto extends UsuarioDto {
 
     private String login;
     private String nome;
@@ -13,8 +13,7 @@ public class AgenteDto extends UsuarioDto{
     private LocalDate dataModificacao;
 
     public AgenteDto(Agente agente) {
-        super(agente.getNome(), agente.getNome(), agente.getDataCriacao(), agente.getDataModificacao());
+        super(agente.getLogin(), agente.getNome(), agente.getDataCriacao(), agente.getDataModificacao());
         TipoAgente tipoAgente;
-
     }
 }
