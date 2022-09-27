@@ -48,6 +48,17 @@ public class ContratanteController {
 		}
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
+
+	@PostMapping("/entrar")
+	@ResponseBody
+	public ResponseEntity logarUsuario(@RequestBody @Valid ContratanteForm form) {
+		Optional<Contratante> usuario = this.contratanteRepo.findByLoginAndSenha(form.getLogin(), form.getSenha());
+
+		if(usuario.isPresent()) {
+			return new ResponseEntity(HttpStatus.OK);
+		}
+		return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+	}
 	
 	@PostMapping("/novo")
 	@ResponseBody
