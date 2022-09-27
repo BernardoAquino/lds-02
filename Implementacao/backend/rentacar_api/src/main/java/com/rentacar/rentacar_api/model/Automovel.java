@@ -47,13 +47,6 @@ public class Automovel {
 		this.setMarca(form.marca);
 		this.setContratoCredito(form.contratoCredito);
 		this.setProprietario(proprietario);
-	}
-
-	public Long getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(Long matricula) {
-		this.matricula = matricula;
+		this.setIsAlugado(false);
 	}
 }
