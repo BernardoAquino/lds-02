@@ -11,6 +11,9 @@ import Button from '../../components/Atoms/Button';
 /** Layout */
 import AuthLayout from '../../layout/AuthLayout';
 
+/** Style */
+import * as El from './ListVehicles.style';
+
 const ListVehicles = () => {
   const navigate = useNavigate();
 
@@ -20,7 +23,9 @@ const ListVehicles = () => {
 
   return (
     <AuthLayout>
-      <Button onClick={goToCreateVehicle}>Novo</Button>
+      <El.ButtonWrapper>
+        <Button onClick={goToCreateVehicle}>Novo</Button>
+      </El.ButtonWrapper>
       <VehicleList />
     </AuthLayout>
   )
