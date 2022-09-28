@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 /** Hooks */
 import useForm, { Field } from '../../../hooks/useForm';
@@ -46,11 +46,12 @@ const Form = ({
     const key = `form-field-${normalizedFieldName}`
     
     if (type === 'select') {
-      const { type, ...fieldProps } = field;
+      const { type, value, ...fieldProps } = field;
       const onChange = onChangeMap?.[getChangeMapType(type)]?.(field);
 
       return {
         ...fieldProps,
+        selected: value,
         options: fieldProps.options as SelectOption[],
         key,
         onChange
@@ -80,7 +81,6 @@ const Form = ({
   return (
     <El.Form onSubmit={handleSubmit(onSubmit)}>
       {fields.map(renderField)}
-
       <Button type={'submit'} color='primary' disabled={isSubmittingForm}>
         {submitLabel}
       </Button>

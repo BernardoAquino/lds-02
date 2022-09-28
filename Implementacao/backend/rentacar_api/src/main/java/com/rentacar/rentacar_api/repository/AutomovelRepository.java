@@ -8,5 +8,6 @@ import com.rentacar.rentacar_api.model.Automovel;
 import com.rentacar.rentacar_api.model.Usuario;
 
 public interface AutomovelRepository extends JpaRepository<Automovel, Long>{
+  List<Automovel> findByProprietario(Usuario proprietario);
   List<Automovel> findByIsAlugadoAndProprietarioNot(boolean isAlugado, Usuario proprietario);
 }

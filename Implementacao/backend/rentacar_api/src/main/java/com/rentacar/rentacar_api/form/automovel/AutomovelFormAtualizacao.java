@@ -11,14 +11,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AutomovelFormAtualizacao {
-	
 	public String ano;
 	public String marca;
 	public String modelo;
 	public String placa;
-	public String contratoCredito;
-	public String proprietario;
-	public boolean isEmprestado;
+	public Boolean contratoCredito;
+	public Long analistaId;
 
 	public Automovel atualizar(Long id, AutomovelRepository automovelRepo) {
 		Optional<Automovel> automovelOptional= automovelRepo.findById(id);
@@ -29,8 +27,6 @@ public class AutomovelFormAtualizacao {
 			automovel.setModelo(this.modelo);
 			automovel.setPlaca(this.placa);
 			automovel.setContratoCredito(this.contratoCredito);
-			automovel.setProprietario(this.proprietario);
-			automovel.setAlugado(this.isEmprestado);
 			automovel.setDataModificacao(LocalDate.now());
 			return automovel;
 		}

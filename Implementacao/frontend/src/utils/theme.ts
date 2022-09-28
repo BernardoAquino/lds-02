@@ -6,14 +6,18 @@ const FONT_SIZES = {
   16: getGridSize(2),
   24: getGridSize(3),
   48: getGridSize(6)
-}
+};
 
 const FONT_WEIGHTS = {
   light: 300,
   normal: 400,
   regular: 500,
   bold: 600
-}
+};
+
+const BREAKPOINTS = {
+  sm: '768px',
+};
 
 const COLORS = {
   primary: {
@@ -33,10 +37,11 @@ const COLORS = {
   },
   neutral: {
     0: '#fff',
+    50: '#e9e9e9',
     75: '#ccc',
     100: '#000'
   }
-}
+};
 
 export const themeConfig = {
   grid: getGridSize,
@@ -45,4 +50,5 @@ export const themeConfig = {
     fontWeight: FONT_WEIGHTS,
   },
   color: COLORS,
-}
+  breakpoints: BREAKPOINTS
+};

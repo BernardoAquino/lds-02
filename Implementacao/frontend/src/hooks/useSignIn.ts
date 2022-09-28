@@ -36,7 +36,8 @@ const useSignIn = () => {
     } else if (successfullyLoggedIn) {
       updateSession({
         name: responseBody.nome,
-        token: responseBody.hash
+        token: responseBody.hash,
+        isAgent: Object.hasOwn(responseBody, 'tipoAgente')
       });
     }
 
