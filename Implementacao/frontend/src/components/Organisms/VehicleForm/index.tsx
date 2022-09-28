@@ -59,7 +59,7 @@ const VehicleForm = ({ onSubmit, submitLabel, values }: VehicleFormProps) => {
         type: 'select',
         label: 'Agente responsável',
         name: 'analistaId',
-        value:  values?.analistaId,
+        value:  values?.analistaId || '',
         options: agents.map((agent: any) => ({
           label: agent.name,
           value: agent.id

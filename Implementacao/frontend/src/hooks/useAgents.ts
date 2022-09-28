@@ -30,9 +30,7 @@ const useAgents = (skip: boolean = false) => {
   }
 
   useEffect(() => {
-    if (skip) {
-      getAgentsData();
-    }
+    getAgentsData();
   }, [])
 
   return {
