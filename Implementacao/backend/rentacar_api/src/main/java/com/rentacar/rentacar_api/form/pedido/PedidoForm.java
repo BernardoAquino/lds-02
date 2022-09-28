@@ -6,7 +6,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class PedidoForm {
-	private Long automovelId;
+	private String automovelId;
+
+	public PedidoForm(String automovelId) {
+		this.automovelId = automovelId;
+	}
 }

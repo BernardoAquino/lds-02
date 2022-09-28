@@ -17,11 +17,14 @@ import lombok.Setter;
 @Table(name="pedido")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Pedido {
-
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	private boolean avaliado;
 	private boolean parecerDoAgente;
+
 	private LocalDate dataCriacao = LocalDate.now();
 	private LocalDate dataModificacao = LocalDate.now();
 
@@ -38,7 +41,6 @@ public class Pedido {
 		this.analista = automovel.getAnalista();
 		this.automovel = automovel;
 		this.contratante = contratante;
-		this.parecerDoAgente = false;
 		this.dataCriacao = LocalDate.now();
 		this.dataModificacao = LocalDate.now();
 	}

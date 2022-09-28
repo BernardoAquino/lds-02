@@ -1,12 +1,12 @@
 import React from 'react';
 
 /** Components */
-import OrderList from '../../components/Organisms/OrderList';
+import OrderList from '../../components/Organisms/PendingLeases';
 
 /** Layout */
 import AuthLayout from '../../layout/AuthLayout';
 
-const ListOrders = () => {
+const ListPendingLeases = () => {
   return (
     <AuthLayout>
       <OrderList />
@@ -14,4 +14,4 @@ const ListOrders = () => {
   )
 }
 
-export default ListOrders;
+export default ListPendingLeases;
