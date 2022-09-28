@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 /** Constants */
 import { AGENT_SIGNUP_URL, SIGNIN_URL } from '../../../constants';
@@ -16,10 +17,15 @@ import SignUpForm from '../SignUpForm';
 import * as El from './SignUpContainer.style';
 
 const UserSignUp = () => {
+  const navigate = useNavigate();
   const { signUp } = useSignUpUser();
 
   const handleSubmit = (formValues: Form) => {
-    signUp(formValues as UserData);
+    signUp(formValues as UserData).then(response => {
+      if (response.userCreatedSuccessfully) {
+        navigate(SIGNIN_URL);
+      }
+    });
   }
 
   return (

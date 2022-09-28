@@ -22,8 +22,8 @@ public class AutomovelFormAlugar {
         Optional<Automovel> a = automovelRepo.findById(idAutomovel);
         if (a.isPresent()){
             Automovel automovel = a.get();
-            if (!automovel.isAlugado()){
-                automovel.setAlugado(true);
+            if (!automovel.getIsAlugado()){
+                automovel.setIsAlugado(true);
                 return automovel;
             }
         }

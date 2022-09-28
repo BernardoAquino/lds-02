@@ -5,6 +5,8 @@ import com.rentacar.rentacar_api.form.contratante.ContratanteForm;
 import com.rentacar.rentacar_api.form.contratante.ContratanteFormAtualizacao;
 import com.rentacar.rentacar_api.model.Contratante;
 import com.rentacar.rentacar_api.repository.ContratanteRepository;
+
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +18,10 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @Controller
 @RequestMapping("/contratante")
 public class ContratanteController {
-	
-
 	@Autowired
 	private ContratanteRepository contratanteRepo;
 
@@ -44,18 +45,17 @@ public class ContratanteController {
 	public ResponseEntity getContratanteById(@PathVariable("id") Long id){
 		Optional<Contratante> contratante = contratanteRepo.findById(id);
 		if(contratante.isPresent()) {
-			return new ResponseEntity(contratante.get(), HttpStatus.CREATED);
+			return new ResponseEntity<Contratante>(contratante.get(), HttpStatus.CREATED);
 		}
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 	
 	@PostMapping("/novo")
 	@ResponseBody
-	public ContratanteDto criarContratante(@RequestBody @Valid ContratanteForm form) {
-
+	public ResponseEntity<Contratante> criarContratante(@RequestBody @Valid ContratanteForm form) {
 		Contratante contratante= this.contratanteRepo.save(new Contratante(form));
 
-		return new ContratanteDto(contratante);
+		return ResponseEntity.status(HttpStatus.CREATED).body(contratante);
 	}
 
 	@DeleteMapping("/remover/{id}")
@@ -72,9 +72,9 @@ public class ContratanteController {
 	
 	@PutMapping("/atualizar/{id}")
 	@Transactional
-	public ResponseEntity atualizarContratanteById(@PathVariable("id") Long id, @RequestBody @Valid ContratanteFormAtualizacao form) {
+	public ResponseEntity<ContratanteDto> atualizarContratanteById(@PathVariable("id") Long id, @RequestBody @Valid ContratanteFormAtualizacao form) {
 		Contratante contratante = form.atualizar(id,contratanteRepo);
-		if(!contratante.equals(null)) {
+		if(contratante != null) {
 			return ResponseEntity.ok(new ContratanteDto(contratante));
 		}
 		return ResponseEntity.badRequest().build();
