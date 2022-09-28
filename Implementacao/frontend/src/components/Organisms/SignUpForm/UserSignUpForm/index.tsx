@@ -15,19 +15,19 @@ const UserSignUpForm = ({ onSubmit }: UserSignUpFormProps) => {
     {
       type: 'text',
       label: 'Nome',
-      name: 'name',
+      name: 'nome',
       required: true
     },
     {
       type: 'email',
       label: 'Email',
-      name: 'email',
+      name: 'login',
       required: true
     },
     {
       type: 'password',
       label: 'Senha',
-      name: 'password',
+      name: 'senha',
       required: true
     },
     {
@@ -45,7 +45,13 @@ const UserSignUpForm = ({ onSubmit }: UserSignUpFormProps) => {
     {
       type: 'text',
       label: 'Endereco',
-      name: 'address',
+      name: 'endereco',
+      required: true
+    },
+    {
+      type: 'text',
+      label: 'Profissão',
+      name: 'profissao',
       required: true
     },
   ]

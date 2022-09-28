@@ -17,7 +17,7 @@ type CreateVehicleResponse = {
 
 export const useCreateVehicle = ({ agentId }: UseCreateVehicleParams) => {
   const createVehicle = async (vehicle: VehicleData): Promise<CreateVehicleResponse> => {
-    const response = await fetch(`${process.env.API_BASE_URL}/vehicle`, {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/vehicle`, {
       method: 'POST',
       body: JSON.stringify({
         ...vehicle,

@@ -15,40 +15,40 @@ const AgentSignUpForm = ({ onSubmit }: AgentSignUpFormProps) => {
     {
       type: 'select',
       label: 'Tipo de agente',
-      name: 'agent_type',
+      name: 'tipoAgente',
       options: [
         {
           label: 'Banco',
-          value: 'banco',
+          value: 'BANCO',
         },
         {
           label: 'Empresa',
-          value: 'empresa',
+          value: 'EMPRESA',
         }
       ]
     },
     {
       type: 'text',
+      label: 'CNPJ',
+      name: 'cnpj',
+      required: true
+    },
+    {
+      type: 'text',
       label: 'Nome',
-      name: 'name',
+      name: 'nome',
       required: true
     },
     {
       type: 'email',
       label: 'Email',
-      name: 'email',
+      name: 'login',
       required: true
     },
     {
       type: 'password',
       label: 'Senha',
-      name: 'password',
-      required: true
-    },
-    {
-      type: 'text',
-      label: 'Endereco',
-      name: 'address',
+      name: 'senha',
       required: true
     },
   ]
