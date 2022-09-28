@@ -33,7 +33,8 @@ const PendingLeaseItem = ({
       <El.Actions>
         {isAgent ? (
           <>
-            <Button onClick={() => onValidate(true)}>aprovar</Button>
+            <Button onClick={() => onValidate(true, false)}>aprovar com contrato de credito</Button>
+            <Button onClick={() => onValidate(true, true)}>aprovar sem contrato de credito</Button>
             <Button color={'secondary'} onClick={() => onValidate(true)}>negar</Button>
           </>
         ) : (
