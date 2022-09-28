@@ -6,22 +6,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.rentacar.rentacar_api.form.pedido.PedidoForm;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-
-
 @Entity
 @Table(name="pedido")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Pedido {
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -29,15 +24,23 @@ public class Pedido {
 	private boolean parecerDoAgente;
 	private LocalDate dataCriacao = LocalDate.now();
 	private LocalDate dataModificacao = LocalDate.now();
-	private Long idAutomovel;
-	private Long idContratante;
 
-	public Pedido(PedidoForm form) {
-		this.idAutomovel = form.getIdAutomovel();
+	@ManyToOne
+	private Automovel automovel;
+
+	@ManyToOne
+	private Contratante contratante;
+
+	@ManyToOne
+	private Usuario analista;
+
+	public Pedido(Automovel automovel, Contratante contratante) {
+		this.analista = automovel.getAnalista();
+		this.automovel = automovel;
+		this.contratante = contratante;
 		this.parecerDoAgente = false;
 		this.dataCriacao = LocalDate.now();
 		this.dataModificacao = LocalDate.now();
-		this.idContratante = form.getIdContratante();
 	}
 
 }

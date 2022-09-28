@@ -6,9 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.rentacar.rentacar_api.form.automovel.AutomovelForm;
+import com.rentacar.rentacar_api.form.automovel.FormCriarAutomovel;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,36 +22,44 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Automovel {
-
-	
+public class Automovel {	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long matricula;
+
 	private String ano;
 	private String marca;
 	private String modelo;
 	private String placa;
-	private boolean isAlugado;
-	private String contratoCredito;
-	private String proprietario;
+	private Boolean isAlugado;
+	private Boolean contratoCredito;
+
+	@ManyToOne
+	private Usuario proprietario;
+
+	@ManyToOne
+	private Agente analista;
+
 	private LocalDate dataCriacao = LocalDate.now();
 	private LocalDate dataModificacao = LocalDate.now();
 
-	
-	public Automovel(AutomovelForm form) {
+	public Automovel(FormCriarAutomovel form, Usuario proprietario) {
 		this.setAno(form.ano);
 		this.setModelo(form.modelo);
 		this.setPlaca(form.placa);
 		this.setMarca(form.marca);
-		this.setContratoCredito(form.contratoCredito);	
-		this.setProprietario(form.proprietario);
+		this.setContratoCredito(form.contratoCredito);
+		this.setProprietario(proprietario);
+		this.setIsAlugado(false);
 	}
 
-	public Long getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(Long matricula) {
-		this.matricula = matricula;
+	public Automovel(FormCriarAutomovel form, Usuario proprietario, Agente analista) {
+		this.setAno(form.ano);
+		this.setModelo(form.modelo);
+		this.setPlaca(form.placa);
+		this.setMarca(form.marca);
+		this.setContratoCredito(form.contratoCredito);
+		this.setProprietario(proprietario);
+		this.setAnalista(analista);
+		this.setIsAlugado(false);
 	}
 }

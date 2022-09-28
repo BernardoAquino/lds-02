@@ -2,11 +2,6 @@ import styled, { css } from 'styled-components';
 
 import { ButtonProps } from './';
 
-const buttonColorMap = {
-  'primary': 'primary',
-  'secondary': 'brand',
-}
-
 const DisabledStyling = css`
   background-color: ${(props) => props.theme.color.neutral[75]};
 `
@@ -37,7 +32,11 @@ const SizeStyling = {
   `,
 }
 
-export const Button = styled.button<ButtonProps>`
+type ButtonStyling = ButtonProps & {
+  color: string;
+}
+
+export const Button = styled.button<ButtonStyling>`
   outline: none;
   border: none;
   border-radius: ${(props) => props.rounded ? '100vw' : props.theme.grid(0.5)};

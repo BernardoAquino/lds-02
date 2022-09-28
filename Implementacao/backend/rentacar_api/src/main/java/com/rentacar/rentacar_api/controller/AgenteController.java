@@ -5,7 +5,10 @@ import com.rentacar.rentacar_api.dto.AgenteDto;
 import com.rentacar.rentacar_api.form.agente.AgenteFormAtualizacao;
 import com.rentacar.rentacar_api.model.Agente;
 import com.rentacar.rentacar_api.repository.AgenteRepository;
+
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @Controller
 @RequestMapping("/agente")
 public class AgenteController {
@@ -24,27 +28,37 @@ public class AgenteController {
 	@Autowired
 	private AgenteRepository agenteRepo;
 
-	@GetMapping("/novo")
+	@PostMapping("/entrar")
 	@ResponseBody
-	public String agenteForm() {
-		return "Ainda nao existe view para esse formulario!!";
+	public ResponseEntity logarUsuario(@RequestBody @Valid AgenteForm form) {
+		Optional<Agente> usuario = this.agenteRepo.findByLoginAndSenha(form.getLogin(), form.getSenha());
+
+		if(usuario.isPresent()) {
+			String hash = DigestUtils.sha256Hex(usuario.get().getSenha() + usuario.get().getLogin());
+
+			usuario.get().setHash(hash);
+
+			this.agenteRepo.save(usuario.get());
+
+			return new ResponseEntity(usuario.get(), HttpStatus.OK);
+		}
+		return new ResponseEntity(HttpStatus.UNAUTHORIZED);
 	}
 	
 	@GetMapping("/all")
 	@ResponseBody
-	public List<AgenteDto> getAll(){
+	public ResponseEntity getAll(){
 		List<Agente> agentes = agenteRepo.findAll();
-		List<AgenteDto> agentesDto = agentes.stream().map(i -> new AgenteDto(i)).toList();
-		return agentesDto;
-		
+
+		return ResponseEntity.ok(agentes);
 	}
 	
 	@GetMapping("/{id}")
 	@ResponseBody
 	public ResponseEntity getAgenteById(@PathVariable("id") Long id){
-		Optional<Agente> agente = agenteRepo.findById(id);
+		Optional<Agente> agente = this.agenteRepo.findById(id);
 		if(agente.isPresent()) {
-			return new ResponseEntity(agente.get(), HttpStatus.CREATED);
+			return new ResponseEntity(agente.get(), HttpStatus.OK);
 		}
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
@@ -58,22 +72,22 @@ public class AgenteController {
 		return new AgenteDto(agente);
 	}
 
-	@DeleteMapping("/remover/{id}")
+	@DeleteMapping("/remover")
 	@Transactional
-	public ResponseEntity removerAgenteById(@PathVariable("id") Long id) {
-		try {			
-			agenteRepo.deleteById(id);
+	public ResponseEntity removerAgenteById(@RequestHeader(HttpHeaders.AUTHORIZATION) String hash) {
+		Optional<Agente> agente = agenteRepo.findByHash(hash);
+
+		if (agente.isPresent()) {
+			agenteRepo.delete(agente.get());
 			return ResponseEntity.ok().build();
-		} catch(Exception e) {
-			return ResponseEntity.badRequest().build();
 		}
-		
+		return ResponseEntity.badRequest().build();		
 	}
 	
-	@PutMapping("/atualizar/{id}")
+	@PutMapping("/atualizar")
 	@Transactional
-	public ResponseEntity atualizarAgenteById(@PathVariable("id") Long id, @RequestBody @Valid AgenteFormAtualizacao form) {
-		Agente agente = form.atualizar(id,agenteRepo);
+	public ResponseEntity atualizarAgenteById(@RequestHeader(HttpHeaders.AUTHORIZATION) String hash, @RequestBody @Valid AgenteFormAtualizacao form) {
+		Agente agente = form.atualizar(hash,agenteRepo);
 		if(!agente.equals(null)) {
 			return ResponseEntity.ok(new AgenteDto(agente));
 		}

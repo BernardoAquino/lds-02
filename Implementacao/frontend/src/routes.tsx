@@ -2,10 +2,12 @@ import React from 'react';
 
 import { createBrowserRouter } from 'react-router-dom';
 
-import { AGENT_SIGNUP_URL, HOME_URL, LIST_CARS_URL, LIST_LEASES_URL, PROFILE_URL_BASE, SIGNIN_URL, SIGNUP_URL } from './constants';
+import { AGENT_SIGNUP_URL, CREATE_CAR_URL, EDIT_CAR_URL, HOME_URL, LIST_CARS_URL, LIST_LEASES_URL, PROFILE_URL_BASE, SIGNIN_URL, SIGNUP_URL } from './constants';
 
 import Home from './pages/Home';
 import ListOrders from './pages/ListOrders';
+import CreateVehicle from './pages/CreateVehicle';
+import EditVehicle from './pages/EditVehicle';
 import ListVehicles from './pages/ListVehicles';
 import Profile from './pages/Profile';
 import SignIn from './pages/SignIn';
@@ -38,9 +40,17 @@ const routes = [
     element: <ListVehicles />
   },
   {
+    path: CREATE_CAR_URL,
+    element: <CreateVehicle />
+  },
+  {
+    path: EDIT_CAR_URL,
+    element: <EditVehicle />
+  },
+  {
     path: LIST_LEASES_URL,
     element: <ListOrders />
-  }
+  },
 ]
 
 export default createBrowserRouter(routes);
