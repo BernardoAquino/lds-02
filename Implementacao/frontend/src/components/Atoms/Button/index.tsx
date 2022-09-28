@@ -4,7 +4,7 @@ import * as El from './Button.style';
 
 export type ButtonProps = {
   children: React.ReactElement | string;
-  color: 'primary' | 'secondary';
+  color?: 'primary' | 'secondary';
   disabled?: boolean;
   onClick?: (MouseEventHandler<HTMLButtonElement> & Function) | undefined;
   rounded?: boolean;
@@ -14,7 +14,7 @@ export type ButtonProps = {
 
 const Button = ({
   children,
-  color,
+  color = 'primary',
   disabled = false,
   onClick,
   rounded = false,

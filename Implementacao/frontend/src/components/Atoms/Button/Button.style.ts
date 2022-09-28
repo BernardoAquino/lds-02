@@ -32,7 +32,11 @@ const SizeStyling = {
   `,
 }
 
-export const Button = styled.button<ButtonProps>`
+type ButtonStyling = ButtonProps & {
+  color: string;
+}
+
+export const Button = styled.button<ButtonStyling>`
   outline: none;
   border: none;
   border-radius: ${(props) => props.rounded ? '100vw' : props.theme.grid(0.5)};

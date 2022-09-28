@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Option as SelectOption } from "../components/Atoms/FormField/Select";
 
 
@@ -9,6 +9,7 @@ export type Field = {
   label: string;
   required?: boolean;
   options?: SelectOption[]
+  value?: string;
 };
 
 export type Form = {
@@ -16,7 +17,7 @@ export type Form = {
 };
 
 const createDefaultForm = (fields: Field[]): Form => fields.reduce((formObject, field) => {
-  formObject[field.name] = null;
+  formObject[field.name] = field?.value ?? null;
 
   return formObject;
 }, {} as Form);
@@ -26,12 +27,16 @@ const useForm = (fields: Field[]) => {
   const [form, setForm] = useState<Form>(DEFAULT_FORM);
   const [isSubmittingForm, setIsSubmittingForm] = useState(false);
 
+  useEffect(() => {
+    setForm(createDefaultForm(fields));
+  }, [fields])
+
   const updateFormField = (field: Field, value: any) => {
-    console.log('UPDATING FIELD', field, value)
     setForm((prevForm) => ({
       ...prevForm,
       [field.name]: value,
     }))
+    field.value = value;
   }
 
   const handleSubmit = (callback: Function) => (e: FormEvent<HTMLFormElement>) => {

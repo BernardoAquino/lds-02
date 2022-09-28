@@ -1,7 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+/** Constants */
+import { EDIT_CAR_URL } from '../../../constants';
 
 /** Hooks */
-import useVehicles from '../../../hooks/useVehicles';
+import useVehicles from '../../../hooks/useVehicleList';
 
 /** Components */
 import List from '../../Atoms/List';
@@ -11,31 +15,52 @@ import Vehicle from './Vehicle';
 import * as El from './VehicleList.style';
 
 export type VehicleData = {
+  id: number;
   name: string;
   isLeased: boolean;
 }
 
 const VehicleList = () => {
-  const { vehicles, error } = useVehicles();
+  const navigate = useNavigate();
+  const { vehicles, error, isLoading, deleteVehicle } = useVehicles<VehicleData>();
+
+  if (isLoading) {
+    return (
+      <El.Message>Carregando...</El.Message>
+    )
+  }
 
   if (!!error) {
     return (
-      <El.ErrorMessage>Ooops... ocorreu um erro :(</El.ErrorMessage>
+      <El.Message>Ooops... ocorreu um erro :(</El.Message>
     )
   }
 
   if (vehicles?.length <= 0) {
     return (
-      <El.ErrorMessage>Você ainda não possui veículos cadastrados</El.ErrorMessage>
+      <El.Message>Você ainda não possui veículos cadastrados</El.Message>
     )
   }
 
+  const redirectToEditUrl = (itemId: number) => {
+    const URL = EDIT_CAR_URL.replace(':id', `${itemId}`);
+
+    navigate(URL);
+  }
+
+
   return (
     <List
+      keyPrefix='vehicleList-item'
       columns={[3,1]}
       items={vehicles}
       render={(item: VehicleData, index: number) => (
-        <Vehicle key={`${item.name}-${index}`} {...item} />
+        <Vehicle
+          key={`${item.name}-${index}`} 
+          {...item}
+          onEdit={() => redirectToEditUrl(item.id)}
+          onDelete={() => deleteVehicle(item)}
+        />
       )}
     />
   )

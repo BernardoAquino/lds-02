@@ -9,7 +9,8 @@ export const Card = styled.div`
   background-color: ${(props) => props.theme.color.neutral[50]};
   border-radius: ${(props) => props.theme.grid(0.5)};
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   padding: ${(props) => props.theme.grid(2)};
 `;
 
@@ -30,3 +31,12 @@ export const Status = styled.p<StatusStylingProps>`
   font-size: ${(props) => props.theme.typography.fontSize[12]};
   font-weight: ${(props) => props.theme.typography.fontWeight[props.isLeased ? 'bold' : 'light']};
 `;
+
+export const Actions = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  & > :not(:first-child) {
+    margin-top: ${(props) => props.theme.grid(1)};
+  }
+`

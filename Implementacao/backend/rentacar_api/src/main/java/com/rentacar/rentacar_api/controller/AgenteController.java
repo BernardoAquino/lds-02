@@ -47,10 +47,10 @@ public class AgenteController {
 	
 	@GetMapping("/all")
 	@ResponseBody
-	public List<AgenteDto> getAll(){
+	public ResponseEntity getAll(){
 		List<Agente> agentes = agenteRepo.findAll();
-		List<AgenteDto> agentesDto = agentes.stream().map(i -> new AgenteDto(i)).toList();
-		return agentesDto;
+
+		return ResponseEntity.ok(agentes);
 	}
 	
 	@GetMapping("/{id}")
