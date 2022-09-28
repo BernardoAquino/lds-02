@@ -12,6 +12,13 @@ const GlobalStyle = createGlobalStyle`
   button { 
     font-family: 'Open Sans', Helvetica, Sans-Serif;
   }
+
+  p {
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
 `;
  
 export default GlobalStyle;

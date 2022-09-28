@@ -27,13 +27,15 @@ const useSignIn = () => {
       },
     });
 
-    const responseBody = await response.json();
+    let responseBody: any = null;
     const successfullyLoggedIn = response.status === 200
     const unauthorized = response.status === 401
 
     if (unauthorized) {
       toast.error("Login e/ou senha incorretos");
     } else if (successfullyLoggedIn) {
+      const responseBody = await response.json();
+
       updateSession({
         name: responseBody.nome,
         token: responseBody.hash,

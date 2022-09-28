@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import javax.persistence.ManyToOne;
 
-import com.rentacar.rentacar_api.model.Automovel;
 import com.rentacar.rentacar_api.model.Pedido;
 
 public class PedidoDto {
@@ -13,6 +12,7 @@ public class PedidoDto {
 	private boolean parecerDoAgente;
 	private LocalDate dataCriacao;
 	private LocalDate dataModificacao;
+	
 	@ManyToOne
 	private Long idAutomovel;
 
@@ -20,7 +20,7 @@ public class PedidoDto {
 	
 	public PedidoDto(Pedido p) {
 		this.parecerDoAgente = p.isParecerDoAgente();
-		this.idAutomovel = p.getIdAutomovel();
+		this.idAutomovel = p.getAutomovel().getMatricula();
 		this.setDataCriacao(p.getDataCriacao());
 		this.dataModificacao = p.getDataModificacao();
 	}

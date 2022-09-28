@@ -20,17 +20,20 @@ export const Info = styled.div`
   width: 100%;
 `;
 
-export const Name = styled.p`
+export const Vehicle = styled.p`
   color: ${(props) => props.theme.color.neutral[100]};
   font-size: ${(props) => props.theme.typography.fontSize[14]};
   font-weight: ${(props) => props.theme.typography.fontWeight.bold};
+  margin-bottom: ${(props) => props.theme.grid(1)};
 `;
 
-export const Status = styled.p<StatusStylingProps>`
-  color: ${(props) => props.isLeased ? props.theme.color.tertiary.pure : props.theme.color.neutral[100]};
+export const Owner = styled.p`
+  color: ${(props) => props.theme.color.neutral[100]};
   font-size: ${(props) => props.theme.typography.fontSize[12]};
-  font-weight: ${(props) => props.theme.typography.fontWeight[props.isLeased ? 'bold' : 'light']};
+  font-weight: ${(props) => props.theme.typography.fontWeight.light};
 `;
+
+export const Client = Owner;
 
 export const Actions = styled.div`
   display: flex;

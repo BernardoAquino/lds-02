@@ -10,7 +10,8 @@ export const CREATE_CAR_URL = CAR_URL_BASE + '/novo';
 export const VIEW_CAR_URL = CAR_URL_BASE + '/:id';
 export const EDIT_CAR_URL = CAR_URL_BASE + '/:id/editar';
 
-export const RENT_URL_BASE = '/aluguel';
-export const CREATE_RENT_URL = RENT_URL_BASE + '/criar';
-export const VIEW_RENT_URL = RENT_URL_BASE + '/:id';
-export const EDIT_RENT_URL = RENT_URL_BASE + '/:id/editar';
+export const LEASE_URL_BASE = '/aluguel';
+export const AVAILABLE_LEASES_URL = LEASE_URL_BASE + '/disponiveis';
+export const PENDING_LEASES_URL = LEASE_URL_BASE + '/pendentes';
+export const VIEW_LEASE_URL = LEASE_URL_BASE + '/:id';
+export const EDIT_LEASE_URL = LEASE_URL_BASE + '/:id/editar';

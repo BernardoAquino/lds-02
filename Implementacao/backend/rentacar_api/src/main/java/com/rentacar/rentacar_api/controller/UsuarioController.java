@@ -43,6 +43,7 @@ public class UsuarioController {
 
 			return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 		}
+		
 		return new ResponseEntity(HttpStatus.UNAUTHORIZED);
 	}
 }
