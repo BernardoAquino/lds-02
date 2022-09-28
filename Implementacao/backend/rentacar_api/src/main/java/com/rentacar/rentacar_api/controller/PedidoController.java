@@ -51,7 +51,6 @@ public class PedidoController {
 		List<PedidoDto> pedidosDto = pedidos.stream().map(i -> new PedidoDto(i)).toList();
 		
 		return pedidosDto;
-		
 	}
 	
 	@GetMapping("/{id}")
@@ -120,8 +119,5 @@ public class PedidoController {
 		}
 		
 		return ResponseEntity.badRequest().body("Id de pedido invalido!");
-	}
-	
-	
-	
+	}	
 }

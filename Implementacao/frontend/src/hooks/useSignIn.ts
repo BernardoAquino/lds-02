@@ -1,27 +1,50 @@
-type UserCredentials = {
+import { toast } from "react-toastify";
+import { useSession } from "../providers/Auth";
+
+export type UserCredentials = {
   email: string;
-  password: string;
+  senha: string;
 }
 
 type UserSignInResponse = {
+  isAgent?: boolean;
   error?: boolean;
+  errorMessage?: string;
   user?: Object;
 }
 
 const useSignIn = () => {
-  const signIn = async (user: UserCredentials): Promise<UserSignInResponse | void> => {
-    const response = await fetch(`${process.env.API_BASE_URL}/signIn`, {
+  const { updateSession } = useSession();
+
+  const signIn = async (user: UserCredentials): Promise<UserSignInResponse> => {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/usuario/autenticar`, {
       method: 'POST',
       body: JSON.stringify({
         ...user
-      })
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
 
     const responseBody = await response.json();
+    const successfullyLoggedIn = response.status === 200
+    const unauthorized = response.status === 401
+
+    if (unauthorized) {
+      toast.error("Login e/ou senha incorretos");
+    } else if (successfullyLoggedIn) {
+      updateSession({
+        name: responseBody.nome,
+        token: responseBody.hash
+      });
+    }
 
     return {
-      user: responseBody,
-      error: response.status !== 200
+      isAgent: successfullyLoggedIn && Object.hasOwn(responseBody, 'tipoAgente'),
+      user: successfullyLoggedIn && responseBody,
+      error: !successfullyLoggedIn,
+      errorMessage: !successfullyLoggedIn && responseBody
     }
   }
 

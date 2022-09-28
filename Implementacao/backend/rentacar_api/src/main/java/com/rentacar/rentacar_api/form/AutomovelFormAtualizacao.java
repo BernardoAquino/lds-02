@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import com.rentacar.rentacar_api.model.Automovel;
+import com.rentacar.rentacar_api.model.Usuario;
 import com.rentacar.rentacar_api.repository.AutomovelRepository;
 
 public class AutomovelFormAtualizacao {
@@ -12,52 +13,11 @@ public class AutomovelFormAtualizacao {
 	public String marca;
 	public String modelo;
 	public String placa;
-	public String contratoCredito;
-	public String proprietario;
-	public boolean isEmprestado;
+	public boolean contratoCredito;
+	public Usuario proprietario;
+	public boolean isAlugado;
 	
-	public boolean isEmprestado() {
-		return isEmprestado;
-	}
-	public void setEmprestado(boolean isEmprestado) {
-		this.isEmprestado = isEmprestado;
-	}
-	public String getAno() {
-		return ano;
-	}
-	public void setAno(String ano) {
-		this.ano = ano;
-	}
-	public String getMarca() {
-		return marca;
-	}
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-	public String getModelo() {
-		return modelo;
-	}
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
-	public String getPlaca() {
-		return placa;
-	}
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
-	public String getContratoCredito() {
-		return contratoCredito;
-	}
-	public void setContratoCredito(String contratoCredito) {
-		this.contratoCredito = contratoCredito;
-	}
-	public String getProprietario() {
-		return proprietario;
-	}
-	public void setProprietario(String proprietario) {
-		this.proprietario = proprietario;
-	}
+
 	public Automovel atualizar(Long id, AutomovelRepository automovelRepo) {
 		Optional<Automovel> automovelOptional= automovelRepo.findById(id);
 		if(automovelOptional.isPresent()) {
@@ -68,7 +28,7 @@ public class AutomovelFormAtualizacao {
 			automovel.setPlaca(this.placa);
 			automovel.setContratoCredito(this.contratoCredito);
 			automovel.setProprietario(this.proprietario);
-			automovel.setAlugado(this.isEmprestado);
+			automovel.setIsAlugado(this.isAlugado);
 			automovel.setDataModificacao(LocalDate.now());
 			return automovel;
 		}
