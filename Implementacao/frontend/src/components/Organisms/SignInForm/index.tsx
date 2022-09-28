@@ -16,12 +16,14 @@ const SignInForm = ({ onSubmit }: SignInFormProps) => {
       type: 'email',
       label: 'Email',
       name: 'login',
+      value: '',
       required: true
     },
     {
       type: 'password',
       label: 'Senha',
       name: 'senha',
+      value: '',
       required: true
     },
   ]

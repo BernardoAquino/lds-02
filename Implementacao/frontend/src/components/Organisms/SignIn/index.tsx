@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 /** Constants */
-import { LIST_CARS_URL, LEASE_URL_BASE, SIGNUP_URL } from '../../../constants';
+import { LIST_CARS_URL, PENDING_LEASES_URL, SIGNUP_URL } from '../../../constants';
 import { Form } from '../../../hooks/useForm';
 import useSignIn, { UserCredentials } from '../../../hooks/useSignIn';
 
@@ -19,7 +19,7 @@ const UserSignUp = () => {
   const handleSubmit = (formValues: Form) => {
     signIn(formValues as UserCredentials).then(response => {
       if (!response.error) {
-        const URL = response.isAgent ? LIST_CARS_URL : LEASE_URL_BASE
+        const URL = response.isAgent ? LIST_CARS_URL : PENDING_LEASES_URL
 
         navigate(URL);
       }

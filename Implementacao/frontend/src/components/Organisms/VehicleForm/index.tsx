@@ -26,28 +26,28 @@ const VehicleForm = ({ onSubmit, submitLabel, values }: VehicleFormProps) => {
       type: 'text',
       label: 'Ano',
       name: 'ano',
-      value:  values?.ano,
+      value:  values?.ano || '',
       required: true
     },
     {
       type: 'text',
       label: 'Marca',
       name: 'marca',
-      value:  values?.marca,
+      value:  values?.marca || '',
       required: true
     },
     {
       type: 'text',
       label: 'Modelo',
       name: 'modelo',
-      value:  values?.modelo,
+      value:  values?.modelo || '',
       required: true
     },
     {
       type: 'text',
       label: 'Placa',
       name: 'placa',
-      value:  values?.placa,
+      value:  values?.placa || '',
       required: true
     },
   ]

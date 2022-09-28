@@ -65,11 +65,11 @@ public class AgenteController {
 	
 	@PostMapping("/novo")
 	@ResponseBody
-	public AgenteDto criarAgente(@RequestBody @Valid AgenteForm form) {
+	public ResponseEntity criarAgente(@RequestBody @Valid AgenteForm form) {
 
 		Agente agente= this.agenteRepo.save(new Agente(form));
 		
-		return new AgenteDto(agente);
+		return ResponseEntity.status(HttpStatus.CREATED).body(agente);
 	}
 
 	@DeleteMapping("/remover")

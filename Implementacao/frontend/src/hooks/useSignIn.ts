@@ -27,7 +27,6 @@ const useSignIn = () => {
       },
     });
 
-    let responseBody: any = null;
     const successfullyLoggedIn = response.status === 200
     const unauthorized = response.status === 401
 
@@ -41,13 +40,20 @@ const useSignIn = () => {
         token: responseBody.hash,
         isAgent: Object.hasOwn(responseBody, 'tipoAgente')
       });
+
+      return {
+        isAgent: successfullyLoggedIn && Object.hasOwn(responseBody, 'tipoAgente'),
+        user: successfullyLoggedIn && responseBody,
+        error: !successfullyLoggedIn,
+        errorMessage: !successfullyLoggedIn ? String(responseBody) : ''
+      }
     }
 
     return {
-      isAgent: successfullyLoggedIn && Object.hasOwn(responseBody, 'tipoAgente'),
-      user: successfullyLoggedIn && responseBody,
-      error: !successfullyLoggedIn,
-      errorMessage: !successfullyLoggedIn && responseBody
+      isAgent: false,
+      user: false,
+      error: true,
+      errorMessage: ''
     }
   }
 

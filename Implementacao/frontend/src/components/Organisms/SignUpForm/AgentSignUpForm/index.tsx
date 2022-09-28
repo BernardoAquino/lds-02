@@ -16,6 +16,7 @@ const AgentSignUpForm = ({ onSubmit }: AgentSignUpFormProps) => {
       type: 'select',
       label: 'Tipo de agente',
       name: 'tipoAgente',
+      value: '',
       options: [
         {
           label: 'Banco',
@@ -31,24 +32,28 @@ const AgentSignUpForm = ({ onSubmit }: AgentSignUpFormProps) => {
       type: 'text',
       label: 'CNPJ',
       name: 'cnpj',
+      value: '',
       required: true
     },
     {
       type: 'text',
       label: 'Nome',
       name: 'nome',
+      value: '',
       required: true
     },
     {
       type: 'email',
       label: 'Email',
       name: 'login',
+      value: '',
       required: true
     },
     {
       type: 'password',
       label: 'Senha',
       name: 'senha',
+      value: '',
       required: true
     },
   ]
